@@ -1,0 +1,14 @@
+create service to expose pod redis on port 6379
+kubectl expose pod redis --port=6379 --name=redis-service --dry-run=client -o yaml > redis-svc.yml
+this will automatically use the pod's labels as selectors - check the file redis-svc.yml
+or
+kubectl create service clusterip redis --tcp=6379:6379 --dry-run=client -o yaml > redis-svc.yml 
+this will not use pod's labels. so generate the file and modify the selectors
+
+create a service to export pod nginx's port 80 on port 30080 on the nodes:
+kubectl expose pod nginx --port=80 --type=nodePort --name=nginx-service --dry-run=client -o yaml
+this will automatically use the pod's labels as selectors but we cannot specify the nodeport. generate the file and update nodeport
+or
+kubectl create service nodeport nginx --tcp=80:80 --node-port=30080 --dry-run=client -o yaml 
+
+go through the kubectl expose commands more 

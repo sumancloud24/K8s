@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapp-service
+spec:
+  selector:
+    app: myapp
+    type: front-end
+  type: NodePort
+  ports:
+  - targetPort: 80 #if not mentioned its assumed to be same as port value
+    port: 80 #mandatory input
+    nodePort: 30008 #if not mentioned a free port is allocated between 30000-32767
