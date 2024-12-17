@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: man-sched
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+  nodeName: k8sworker1
